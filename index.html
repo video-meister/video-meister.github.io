@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Bare Facts</title>
+    <script type="module" src="./elements.videomeister.js"></script>
+
+    <style>
+      body {
+        --InhousePink: #d50f67;
+        --InhouseOrange: rgb(204, 102, 51);
+        --InhouseYellow: #fcba00;
+        --InhousePlay: var(--InhouseYellow);
+        --InhouseCUEbackground: #black;
+        --InhouseCUEcolor: var(--InhouseYellow);
+        --InhouseChaptercolor: var(--InhouseYellow);
+        background-color: black;
+        font-family: Verdana;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <template id="ihf-video-template1">
+        <style>
+          :host {
+            display: inline;
+            font-size: 0.85em;
+          }
+
+          [chapter] .container video::cue {
+            color: var(--InhouseCUEcolor);
+            font-size: 3em;
+          }
+
+          [chapter="0"] .container video::cue,
+          [chapter="1"] .container video::cue {
+            background: green;
+            color: var(--InhouseCUEcolor);
+            font-size: 2em;
+          }
+          .container {
+            width: 98vw;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 1em;
+            margin: 0 auto;
+            background: black;
+          }
+
+          .sidebar {
+            background: grey;
+          }
+
+          #title {
+            color: var(--InhousePlay);
+            font-weight: bold;
+            padding-bottom: 2px;
+            padding-left: 1em;
+            border-bottom: 1px solid grey;
+          }
+
+          .chapters {
+            float: left;
+            word-wrap: break-word;
+            padding: 10px;
+          }
+
+          .chapter--seen {
+            color: var(--InhousePlay);
+          }
+
+          [id*="chapter"] {
+            display: block;
+            padding: 2px 0;
+            font-size: 100%;
+          }
+
+          [id*="chapter"]:hover {
+            background-color: var(--InhousePlay);
+            color: black;
+            cursor: pointer;
+          }
+
+          .chapter--time {
+            font-size: 80%;
+          }
+
+          .chapter--title {
+            margin-left: 4px;
+          }
+
+          .time {
+            color: grey;
+            float: left;
+            height: auto;
+          }
+
+          .play-button {
+            --playbuttonSize: 40px;
+            float: left;
+            display: block;
+            margin: -5px 10px;
+            height: var(--playbuttonSize);
+            width: var(--playbuttonSize);
+            background-color: var(--InhousePlay);
+            border-radius: var(--playbuttonSize);
+            position: relative;
+          }
+
+          .play-button:hover {
+            cursor: pointer;
+          }
+
+          .play-button:hover:after {
+            border-color: transparent transparent transparent black;
+          }
+
+          .play-button:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 10.5px;
+            left: 14px;
+            margin: 0 auto;
+            border-style: solid;
+            border-width: 9.5px 0 9.5px 17px;
+            border-color: transparent transparent transparent
+              rgba(255, 255, 255, 1);
+          }
+
+          .playing {
+            animation: pulsate 4s ease-out;
+            animation-iteration-count: infinite;
+          }
+
+          @-webkit-keyframes pulsate {
+            0% {
+              -webkit-transform: scale(1, 1);
+              opacity: 0.8;
+            }
+
+            50% {
+              -webkit-transform: scale(1.2, 1.2);
+              opacity: 1;
+            }
+
+            100% {
+              -webkit-transform: scale(1, 1);
+              opacity: 0.8;
+            }
+          }
+
+          @keyframes pulsate {
+            0% {
+              transform: scale(1, 1);
+              opacity: 0.8;
+            }
+
+            50% {
+              transform: scale(1.2, 1.2);
+              opacity: 1;
+            }
+
+            100% {
+              transform: scale(1, 1);
+              opacity: 0.8;
+            }
+          }
+
+          video{
+              width: -webkit-fill-available;
+              max-height:95vh;
+          }
+          video::-webkit-media-controls-fullscreen-button {
+            display: none;
+          }
+        </style>
+        <div class="container">
+          <div class="sidebar">
+            <div id="title">21</div>
+            <div class="chapters">Preloading video...</div>
+            <div>
+              <div class="play-button"></div>
+              <div class="time">00:00:00</div>
+            </div>
+          </div>
+          <video controls preload="auto" poster="">
+            <source src="./barefacts.mp4" type="video/mp4" />
+            <!-- <track
+              kind="subtitles"
+              src="./barefacts.vtt"
+              srclang="en"
+              label="The Bare Facts English"
+              default="default"
+            /> -->
+          </video>
+        </div>
+      </template>
+      <ihf-video id="ihf" src="./barefacts.mp4" title="The Bare Facts">
+        2.00 == Titelpagina # 7.35 == Start # 30 == Kamer pan shot # 53 == Entree
+        Willem # 74.0 == Lange lul # 79.0 == Willem spreekt # 96.0 == Willem
+        aanschouwt kamer # 101.0 == Willem close-up # 128.35 == Postbode Bare Facts
+        # 129.6 == Willem in pak # 140 == Willem neemt post aan # 152 == Willem neemt
+        bril af # 165 == Willem met bril # 190 == Willem zet bril af # 197 == XXX # 205
+        == Willem zet bril weer op # 218 == Willem loop in pak door kamer # 237 ==
+        en bril weer op # 276 == Toen ik 12 was zou ik al klaargekomen zijn # 372 ==
+        Willem zet bril weer op # 412 == Willem aanschouwt geklede kamer # 428 == en
+        bril weer af # 453 == foto stills # 530 == Nou, nou, nou.. # 542.5 == hehe.. de koffie is
+        klaar gekomen, iemand nog Zwarte Koffie? # 561 == Zelfbevredigende typemachine # 593 == Willem weer aan
+        de wandel # 609 == Bril weer op x # 621 == Willem aanschouwt maf dansje # 649
+        == Willem # 663 == en zonder bril # 708 == Bril weer op # 729 == Ach arme
+        Lenin # 762 == Willem.. of toch een deepfake van John Beringen? # 802 == W
+        # 842 == Willem in pak # 862 == Willem naakt
+      </ihf-video>
+    </div>
+  </body>
+</html>
